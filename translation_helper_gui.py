@@ -115,6 +115,19 @@ class TranslationHelperGUI(QMainWindow):
             f.write(html)
         self.open_with_system_app(filepath)
 
+    def get_pdf_stylesheet(self):
+        # Try to get font size from settings.ini, default to 12pt
+        font_size = "12pt"
+        config = configparser.ConfigParser()
+        if os.path.exists(self.config_path):
+            config.read(self.config_path)
+            if 'pdf' in config and 'font_size' in config['pdf']:
+                font_size = config['pdf']['font_size']
+
+        return f'''
+        body {{ font-family: Arial, Helvetica, sans-serif; font-size: {font_size}; }}
+  '''
+
     def export_range_pdf(self):
         # Prompt for range (start/end chapter/verse, same book)
         book = self.current_book
@@ -131,9 +144,13 @@ class TranslationHelperGUI(QMainWindow):
         if not ok4:
             return
         html = self.build_range_html(book, start_chapter, start_verse, end_chapter, end_verse)
+        stylesheet = self.get_pdf_stylesheet()
+        # Embed stylesheet directly in HTML for PDF export
+        html = f"<html><head><style>{stylesheet}</style></head><body>{html}</body></html>"
         filename = f"{book} {start_chapter}_{start_verse}-{end_chapter}_{end_verse}.pdf"
         filepath = os.path.join("userdata", filename)
         doc = QTextDocument()
+        # No need to call setDefaultStyleSheet; styles are in the HTML
         doc.setHtml(html)
         printer = QPrinter(QPrinter.HighResolution)
         printer.setOutputFormat(QPrinter.PdfFormat)
@@ -184,7 +201,7 @@ class TranslationHelperGUI(QMainWindow):
             verses_in_chapter = [int(vs) for vs in translations[book][ch_str].keys() if in_range(ch, int(vs))]
             if not verses_in_chapter:
                 continue
-            html += f"<h3>Chapter {ch}</h3>"
+            html += f"<h2>Chapter {ch}</h2>"
             first_verse = True
             for vs in sorted(verses_in_chapter):
                 user_text = translations[book][ch_str][str(vs)]

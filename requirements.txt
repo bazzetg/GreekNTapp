@@ -1,0 +1,4 @@
+PyQt5>=5.15.0
+lxml>=4.6.0
+pysblgnt>=1.0.0
+# For PDF export (PyQt5 includes QtPrintSupport)

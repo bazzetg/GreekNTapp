@@ -1,0 +1,39 @@
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> 40d6129a1b88708e788523918ca44e90a5504e4f
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+---
+
+This is a personal project developed for my own use. The code is published in the hope that it will be useful to others.
+
+This software uses the following third-party libraries:
+
+- PyQt5 (GPL v3): Copyright (C) Riverbank Computing Limited
+  https://www.riverbankcomputing.com/software/pyqt/intro
+- lxml (BSD-like): Copyright (c) 2004-2024 ElementTree contributors, lxml contributors
+  https://lxml.de/
+- pysblgnt (MIT License): Copyright (c) James Tauber
+  https://github.com/jtauber/pysblgnt
+- SBL Greek New Testament (SBLGNT): Copyright © 2010 by SBL Press, used by permission
+  https://sblgnt.com/license/
+- ESV (English Standard Version): Scripture quotations are from The Holy Bible, English Standard Version® (ESV®), copyright © 2001 by Crossway, a publishing ministry of Good News Publishers. Used by permission. All rights reserved.
+  https://www.crossway.org/permissions/
+
+Please see the respective project pages for full license texts and acknowledgements.

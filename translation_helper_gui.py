@@ -426,7 +426,7 @@ class TranslationHelperGUI(QMainWindow):
         self.compare_button.setToolTip("Show the standard translation for this verse")
         self.lookup_button.setToolTip("Show the word lookup sidebar")
         #self.hide_standard_button.setToolTip("Hide the standard translation sidebar")
-        self.translation_input.setToolTip("Type your translation here")
+        #self.translation_input.setToolTip("Type your translation here")
         self.word_list.setToolTip("Select a Greek word to see lexical and parsing info")
         self.lookup_info.setToolTip("Lexical and parsing info for the selected word")
         # Do NOT auto-select the first word in the word list
@@ -486,29 +486,7 @@ class TranslationHelperGUI(QMainWindow):
         self.compare_button.setEnabled(True)
         self.lookup_button.setEnabled(True)
 
-    def save_last_verse(self):
-        # Only save if the current reference is valid
-        greek_text_data = get_greek_text(self.current_book, self.current_chapter, self.current_verse)
-        if not greek_text_data:
-            return  # Don't save invalid reference
-        config = configparser.ConfigParser()
-        # Read existing config to preserve user name and other settings
-        if os.path.exists(self.config_path):
-            config.read(self.config_path)
-        config['last_verse'] = {
-            'book': self.current_book,
-            'chapter': str(self.current_chapter),
-            'verse': str(self.current_verse)
-        }
-        config['window'] = {
-            'x': str(self.x()),
-            'y': str(self.y()),
-            'width': str(self.width()),
-            'height': str(self.height())
-        }
-        os.makedirs(os.path.dirname(self.config_path), exist_ok=True)
-        with open(self.config_path, 'w') as configfile:
-            config.write(configfile)
+
 
     def load_last_verse(self):
         config = configparser.ConfigParser()
